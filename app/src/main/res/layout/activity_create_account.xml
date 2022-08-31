@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context=".CreateAccount">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edt_ca_username"
+            android:layout_width="265dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_ca_fullname"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/edt_ca_fullname"
+            app:layout_constraintTop_toBottomOf="@+id/edt_ca_fullname" />
+
+        <EditText
+            android:id="@+id/edt_ca_email"
+            android:layout_width="265dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_ca_username"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edt_ca_username"
+            app:layout_constraintTop_toBottomOf="@+id/edt_ca_username" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="148dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/view6"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/view6"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="148dp"
+            android:layout_height="3dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="@+id/textView9" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="224dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_app_logo_white" />
+
+        <Button
+            android:id="@+id/btn_ca_createaccount"
+            android:layout_width="265dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_white"
+            android:stateListAnimator="@null"
+            android:text="Create Account"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/edt_ca_confirmpass"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edt_ca_confirmpass"
+            app:layout_constraintTop_toBottomOf="@+id/edt_ca_confirmpass" />
+
+        <Button
+            android:id="@+id/btn_ca_signin"
+            android:layout_width="265dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_blue"
+            android:stateListAnimator="@null"
+            android:text="Signin"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/btn_ca_createaccount"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btn_ca_createaccount"
+            app:layout_constraintTop_toBottomOf="@+id/btn_ca_createaccount" />
+
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/karla_bold"
+            android:text="Create Account"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bebas_neue"
+            android:text="PROJECT"
+            android:textColor="@color/white"
+            android:textSize="58sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="@+id/textView11"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/bebas_neue"
+            android:text="TEA"
+            android:textColor="@color/secondary"
+            android:textSize="58sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+        <EditText
+            android:id="@+id/edt_ca_fullname"
+            android:layout_width="265dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Fullname"
+            android:inputType="text"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+        <EditText
+            android:id="@+id/edt_ca_password"
+            android:layout_width="265dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPersonName|textPassword"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_ca_email"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edt_ca_email"
+            app:layout_constraintTop_toBottomOf="@+id/edt_ca_email" />
+
+        <EditText
+            android:id="@+id/edt_ca_confirmpass"
+            android:layout_width="265dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Confirm Password"
+            android:inputType="textPersonName|textPassword"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_ca_email"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edt_ca_email"
+            app:layout_constraintTop_toBottomOf="@+id/edt_ca_password" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

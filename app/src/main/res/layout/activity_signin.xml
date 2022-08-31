@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:layout_gravity="bottom"
+    tools:context=".Signin">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/accent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="148dp"
+        android:layout_height="3dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="148dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="224dp"
+        android:layout_height="173dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_app_logo_white" />
+
+    <Button
+        android:id="@+id/btn_signin_page"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/btn_white"
+        android:stateListAnimator="@null"
+        android:text="Signin"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/edt_signin_password" />
+
+    <Button
+        android:id="@+id/btn_createaccount_page"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_blue"
+        android:stateListAnimator="@null"
+        android:text="Create Account"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btn_signin_page"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_signin_page"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin_page" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Signin"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bebas_neue"
+        android:text="PROJECT"
+        android:textColor="@color/white"
+        android:textSize="58sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/bebas_neue"
+        android:text="TEA"
+        android:textColor="@color/secondary"
+        android:textSize="58sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <EditText
+        android:id="@+id/edt_signin_email"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="36dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:paddingStart="14sp"
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <EditText
+        android:id="@+id/edt_signin_password"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPersonName|textPassword"
+        android:paddingStart="14sp"
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/edt_signin_email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edt_signin_email"
+        app:layout_constraintTop_toBottomOf="@+id/edt_signin_email" />
+</android.support.constraint.ConstraintLayout>
