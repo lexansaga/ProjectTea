@@ -20,4 +20,8 @@
     <color name="black">#1C1C1C</color>
     <color name="grey">#CECECE</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="blue_accent">#70BCFF</color>
+    <color name="yellow_accent">#E5D826</color>
+    <color name="red_accent">#70BCFF</color>
 </resources>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckoutPage">
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Name"
+        android:textColor="@color/font_color"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Name"
+        android:textColor="@color/font_color"
+        android:textFontWeight="300"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/checkCartVariationsValue10"
+        app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue10" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/karla_bold"
+        android:text="Name"
+        android:textColor="@color/font_color"
+        android:textFontWeight="300"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue11"
+        app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue4" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue14"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+        android:textColor="@color/font_color"
+        android:textFontWeight="300"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/checkoutUser"
+        app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue13"
+        app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue15" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Address"
+        android:textColor="@color/font_color"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue4" />
+
+    <Button
+        android:id="@+id/btn_signin3"
+        android:layout_width="265dp"
+        android:layout_height="55dp"
+        android:background="@drawable/btn_primary"
+        android:stateListAnimator="@null"
+        android:text="Proceed Checkout"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/checkOutRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/checkOutRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue9" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Delivery Fee"
+        android:textColor="@color/font_color"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue2"
+        app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue2" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Subtotal"
+        android:textColor="@color/font_color"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/checkOutRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/checkOutRecyclerView" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Name"
+        android:textColor="@color/font_color"
+        android:textFontWeight="300"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/checkOutRecyclerView"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toEndOf="@+id/checkCartVariationsValue2"
+        app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue2" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/karla_bold"
+        android:text="Name"
+        android:textColor="@color/font_color"
+        android:textFontWeight="300"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue8"
+        app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue12" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/karla_bold"
+        android:text="Name"
+        android:textColor="@color/font_color"
+        android:textFontWeight="300"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue8"
+        app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue9" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Total"
+        android:textColor="@color/font_color"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue12"
+        app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue12" />
+
+    <TextView
+        android:id="@+id/checkCartVariationsValue4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="Contact Number"
+        android:textColor="@color/font_color"
+        android:textFontWeight="500"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue10"
+        app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue10" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/bebas_neue"
+        android:text="PROJECT"
+        android:textColor="@color/primary"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:fontFamily="@font/bebas_neue"
+        android:text="TEA"
+        android:textColor="@color/font_color"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="68dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_app_logo_2" />
+
+    <ImageView
+        android:id="@+id/checkoutUser"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/checkoutCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/checkoutCart"
+        app:layout_constraintVertical_bias="0.545"
+        app:srcCompat="@drawable/ic_user" />
+
+    <ImageView
+        android:id="@+id/checkoutCart"
+        android:layout_width="21dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@+id/checkoutUser"
+        app:layout_constraintTop_toTopOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.461"
+        app:srcCompat="@drawable/ic_cart" />
+
+    <ImageView
+        android:id="@+id/checkoutCart2"
+        android:layout_width="21dp"
+        android:layout_height="25dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/checkCartVariationsValue13"
+        app:layout_constraintEnd_toEndOf="@+id/checkoutUser"
+        app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue11"
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/checkOutRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/checkoutUser"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue14" />
+
+</android.support.constraint.ConstraintLayout>

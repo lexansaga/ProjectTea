@@ -25,14 +25,14 @@ public class Signin extends AppCompatActivity implements View.OnClickListener {
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(getApplicationContext(),Home.class));
             }
         });
 
         btn_createaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),CreateAccount.class));
+                startActivity(new Intent(getApplicationContext(),Administrator.class));
             }
         });
     }

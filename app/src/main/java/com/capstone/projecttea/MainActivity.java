@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(getApplicationContext(),Home.class));
+
         btn_signin = findViewById(R.id.btn_signin);
         btn_createaccount = findViewById(R.id.btn_createaccount);
 

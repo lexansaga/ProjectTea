@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_marginBottom="2dp"
+    android:paddingBottom="2dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="81dp"
+        android:backgroundTint="@color/primary"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/checkCartProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="Product Title"
+                android:textColor="@color/white"
+                android:textFontWeight="600"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/checkCartProductImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/checkCartPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="₱52.32"
+                android:textColor="@color/white"
+                android:textFontWeight="600"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue"
+                app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue" />
+
+            <TextView
+                android:id="@+id/checkCartQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textFontWeight="600"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/checkCartProductName" />
+
+            <TextView
+                android:id="@+id/checkCartVariationsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="Variations : Cold"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/checkCartProductName"
+                app:layout_constraintTop_toBottomOf="@+id/checkCartProductName" />
+
+            <ImageView
+                android:id="@+id/checkCartProductImage"
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/product" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>
