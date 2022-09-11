@@ -18,7 +18,8 @@ public class CheckoutSuccess extends AppCompatActivity {
         btnViewHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),AdminHistory.class));
+                startActivity(new Intent(getApplicationContext(),Home.class));
+                finish();
             }
         });
     }

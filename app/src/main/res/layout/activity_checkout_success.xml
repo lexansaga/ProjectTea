@@ -15,7 +15,7 @@
         android:background="@drawable/btn_primary"
         android:fontFamily="@font/karla_bold"
         android:stateListAnimator="@null"
-        android:text="View History"
+        android:text="Back to Home"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/textView26"
         app:layout_constraintHorizontal_bias="1.0"

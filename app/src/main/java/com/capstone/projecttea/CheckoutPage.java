@@ -107,6 +107,7 @@ public class CheckoutPage extends AppCompatActivity {
                 String variation = productModels.get(i).getVariation();
                 int quantity = productModels.get(i).getQuantity();
                 subTotal += (quantity * price);
+
             models.add(new ProductModel(id,  productId, name, String.valueOf(price), productId.split("|")[1], quantity));
 
 
@@ -156,21 +157,47 @@ public class CheckoutPage extends AppCompatActivity {
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double total = 0;
-                for (ProductModel productModel: models) {
-                    String id = productModel.getID(); // Cart ID
-                    String productId = productModel.getImageLink();
-                    String name = productModel.getProductName();
-                    Double price = Double.parseDouble(productModel.getPrice());
-                    String variation = productModel.getVariation();
-                    int quantity = productModel.getQuantity();
-                    total += (quantity * price);
-                }
+                String id = firestore.collection("Orders").document(user).collection("Orders").document().getId();
+                String timeanddatenow = Utils.TimeAndDateNow("");
                 Map<String, Object> data = new HashMap<>();
-                firestore.collection("Orders").document(user).set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                data.put("ID",id);
+                data.put("UserID",user);
+                data.put("Total",txtTotal.getText().toString().trim());
+                data.put("TimeOrder",timeanddatenow);
+                data.put("Status","InProgress");
+
+                firestore.collection("Orders").document(user).collection("Orders").document(id).set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        double total = 0;
+                        for (ProductModel productModel: models) {
+                            String uid = firestore.collection("Orders").document(user).collection("Product").document().getId();
+                            String cId = productModel.getID(); // Cart ID
+                            String productId = productModel.getImageLink();
+                            String name = productModel.getProductName();
+                            Double price = Double.parseDouble(productModel.getPrice());
+                            String variation = productModel.getVariation();
+                            int quantity = productModel.getQuantity();
+                            double itemPrice = price * quantity;
+                            total += (quantity * price);
+                            Map<String, Object> productData = new HashMap<>();
+                            productData.put("ID",uid);
+                            productData.put("OrderID",id);
+                            productData.put("Name",name);
+                            productData.put("Quantity",quantity);
+                            productData.put("Price",price);
+                            productData.put("Total_Price",itemPrice);
+                            productData.put("TimeOrder",timeanddatenow);
 
+                            firestore.collection("Cart").document(cId).delete();
+                            firestore.collection("Orders").document(user).collection("Product").document(uid).set(productData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(getApplicationContext(), "Order Submitted Sucessfully!", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                        }
                     }
                 });
                 startActivity(new Intent(getApplicationContext(),CheckoutSuccess.class));

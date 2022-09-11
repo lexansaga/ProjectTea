@@ -101,10 +101,10 @@ public class Cart extends AppCompatActivity {
                         String variation = productModels.get(i).getVariation();
                         int quantity = productModels.get(i).getQuantity();
                         models.add(new ProductModel(id,productId,name,price,variation,quantity));
-                        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
                     }
 
-                  Toast.makeText(Cart.this, ""+productModels.get(i).isChecked(), Toast.LENGTH_SHORT).show();
+           //       Toast.makeText(Cart.this, ""+productModels.get(i).isChecked(), Toast.LENGTH_SHORT).show();
                 }
                 Intent intent = new Intent(getApplicationContext(), CheckoutPage.class);
                 intent.putExtra("checkout",models);
