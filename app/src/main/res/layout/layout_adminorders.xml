@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="12dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="0dp"
-        android:layout_height="195dp"
+        android:layout_height="wrap_content"
         android:background="@color/primary"
+        app:layout_constraintBottom_toTopOf="@+id/adminOrderRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topLevel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primary">
+            android:background="@color/primary"
+            android:paddingBottom="16dp"
+            android:outlineSpotShadowColor="@android:color/transparent"
+            app:elevation="0dp">
 
             <TextView
                 android:id="@+id/adminOrderAddress"
@@ -26,7 +32,7 @@
                 android:layout_height="43dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/adminOrderNumber"
@@ -39,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/karla_bold"
                 android:text="Name"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/adminOrderName"
@@ -48,17 +54,20 @@
 
             <TextView
                 android:id="@+id/adminOrderName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="72dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Name"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkCartVariationsValue5"
                 app:layout_constraintEnd_toEndOf="@+id/adminOrderNumber"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/checkCartVariationsValue5"
-                app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue5" />
+                app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue5"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/checkCartVariationsValue17"
@@ -67,7 +76,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Address"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue19"
@@ -80,7 +89,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Contact Number"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue5"
@@ -93,7 +102,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Name"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/textView16"
@@ -106,7 +115,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/karla"
                 android:text="9999"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -118,14 +127,16 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Order #"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="600"
                 app:layout_constraintBottom_toBottomOf="@+id/adminOrdersID"
+                app:layout_constraintEnd_toEndOf="@+id/btn_cancel"
+                app:layout_constraintStart_toEndOf="@+id/adminOrdersID"
                 app:layout_constraintTop_toTopOf="@+id/adminOrdersID"
-                app:layout_constraintVertical_bias="0.0"
-                tools:layout_editor_absoluteX="318dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -135,7 +146,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Order ID"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="600"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +158,7 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/karla"
                 android:text="Order ID"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/textView16"
                 app:layout_constraintStart_toEndOf="@+id/textView16"
                 app:layout_constraintTop_toTopOf="@+id/textView16"
@@ -155,44 +166,49 @@
 
             <Button
                 android:id="@+id/btn_inprogress"
-                android:layout_width="130dp"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
                 android:background="@drawable/btn_inprogress"
                 android:text="In Progress"
                 android:textColor="@color/white"
                 android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_orderready"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue17"
                 app:layout_constraintTop_toBottomOf="@+id/adminOrderAddress" />
 
             <Button
                 android:id="@+id/btn_cancel"
-                android:layout_width="120dp"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:background="@drawable/btn_cancel"
                 android:text="Cancel"
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/adminOrderAddress"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_orderready"
                 app:layout_constraintStart_toEndOf="@+id/btn_orderready"
-                app:layout_constraintTop_toTopOf="@+id/btn_orderready" />
+                app:layout_constraintTop_toTopOf="@+id/btn_orderready"
+                app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/btn_orderready"
-                android:layout_width="120dp"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginEnd="4dp"
                 android:background="@drawable/btn_orderready"
                 android:text="Order Ready"
                 android:textColor="@color/white"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_inprogress"
+                app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
                 app:layout_constraintStart_toEndOf="@+id/btn_inprogress"
                 app:layout_constraintTop_toTopOf="@+id/btn_inprogress" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/adminOrderRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -200,14 +216,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="75dp"
         app:layout_constraintEnd_toEndOf="@+id/adminOrderRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/adminOrderRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/adminOrderRecyclerView">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomLevel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -219,7 +235,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/karla_bold"
                 android:text="P120"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/adminOrderSubtotal"
@@ -232,7 +248,7 @@
                 android:layout_marginStart="32dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="120"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/checkCartVariationsValue25"
@@ -244,7 +260,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/karla_bold"
                 android:text="120"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="600"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/adminOrderShippingFee"
@@ -257,7 +273,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Total"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue24"
@@ -270,7 +286,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Shipping fee"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue25"
@@ -284,11 +300,11 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Subtotal"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
-</android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

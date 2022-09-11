@@ -1,69 +1,21 @@
 package com.capstone.projecttea;
 
-import android.support.v7.widget.RecyclerView;
+import java.io.Serializable;
 
-public class ProductModel {
+public class ProductModel implements Serializable {
 
     String ID;
     int productImage;
+    String imageLink;
     String productName, description,price;
     String[] variations;
-    int quantity;
 
+    String variation;
+    int quantity;
+    boolean isChecked;
     OrderModel orderModel;
     UserModel userModel;
 
-    public ProductModel(String ID, OrderModel orderModel, UserModel userModel) {
-        this.ID = ID;
-        this.orderModel = orderModel;
-        this.userModel = userModel;
-    }
-
-
-    public OrderModel getOrderModel() {
-        return orderModel;
-    }
-
-    public void setOrderModel(OrderModel orderModel) {
-        this.orderModel = orderModel;
-    }
-
-    public UserModel getUserModel() {
-        return userModel;
-    }
-
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
-    }
-
-
-
-
-    public ProductModel(String ID, int productImage, String productName, String price, String[] variations, int quantity) {
-        this.ID = ID;
-        this.productImage = productImage;
-        this.productName = productName;
-        this.price = price;
-        this.variations = variations;
-        this.quantity = quantity;
-    }
-
-
-    public ProductModel(String ID, int productImage, String productName, String description, String price, String[] variations, int quantity) {
-        this.ID = ID;
-        this.productImage = productImage;
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
-        this.variations = variations;
-        this.quantity = quantity;
-    }
-
-    public ProductModel(int productImage, String productName, String price) {
-        this.productImage = productImage;
-        this.productName = productName;
-        this.price = price;
-    }
 
 
     public String getID() {
@@ -80,6 +32,14 @@ public class ProductModel {
 
     public void setProductImage(int productImage) {
         this.productImage = productImage;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public String getProductName() {
@@ -114,6 +74,14 @@ public class ProductModel {
         this.variations = variations;
     }
 
+    public String getVariation() {
+        return variation;
+    }
+
+    public void setVariation(String variation) {
+        this.variation = variation;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -122,8 +90,62 @@ public class ProductModel {
         this.quantity = quantity;
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    public OrderModel getOrderModel() {
+        return orderModel;
+    }
+
+    public void setOrderModel(OrderModel orderModel) {
+        this.orderModel = orderModel;
+    }
+
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
+    }
 
 
+    public ProductModel(String ID, OrderModel orderModel, UserModel userModel) {
+        this.ID = ID;
+        this.orderModel = orderModel;
+        this.userModel = userModel;
+    }
+    public ProductModel(String ID, int productImage, String productName, String price, String[] variations, int quantity) {
+        this.ID = ID;
+        this.productImage = productImage;
+        this.productName = productName;
+        this.price = price;
+        this.variations = variations;
+        this.quantity = quantity;
+    }
+
+
+    public ProductModel(String ID, String imageLink, String productName, String price) {
+        this.ID = ID;
+        this.imageLink = imageLink;
+        this.productName = productName;
+        this.price = price;
+    }
+
+
+    public ProductModel(String ID, String imageLink, String productName, String price, String variation, int quantity) {
+        this.ID = ID;
+        this.imageLink = imageLink;
+        this.productName = productName;
+        this.price = price;
+        this.variation = variation;
+        this.quantity = quantity;
+    }
 
 
 

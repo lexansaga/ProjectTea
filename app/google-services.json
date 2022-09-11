@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "799880678901",
+    "project_id": "projecttea-5d955",
+    "storage_bucket": "projecttea-5d955.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799880678901:android:5d3d530c796eca5e1724bc",
+        "android_client_info": {
+          "package_name": "com.capstone.projecttea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799880678901-u3sj5kcbackvm4qdrc2mf7und2m0gbic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNAEgN4YyuTYda0Q5GSacrQGh9eTagttg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799880678901-u3sj5kcbackvm4qdrc2mf7und2m0gbic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

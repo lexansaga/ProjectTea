@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ManageItem">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtItemVariation"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Item Variation"
+            android:inputType="text"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edtManageItemDescription"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edtManageItemDescription"
+            app:layout_constraintTop_toBottomOf="@+id/edtManageItemDescription" />
+
+        <Button
+            android:id="@+id/btnItemManageItemUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/btn_radiodefault"
+            android:text="Update"
+            android:textColor="@color/primary"
+            app:layout_constraintBottom_toBottomOf="@+id/btnManageItemAdd"
+            app:layout_constraintEnd_toStartOf="@+id/btnItemManageItemDelete"
+            app:layout_constraintStart_toEndOf="@+id/btnManageItemAdd"
+            app:layout_constraintTop_toTopOf="@+id/btnManageItemAdd"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnManageItemAdd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_radioselected"
+            android:text="Add"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/spinManageItemSeries"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnItemManageItemDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_radiodefault"
+            android:text="Delete"
+            android:textColor="@color/primary"
+            app:layout_constraintBottom_toBottomOf="@+id/btnItemManageItemUpdate"
+            app:layout_constraintEnd_toEndOf="@+id/spinManageItemSeries"
+            app:layout_constraintTop_toTopOf="@+id/btnItemManageItemUpdate"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardManageSelectItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/spinManageItemSeries"
+            app:layout_constraintStart_toStartOf="@+id/spinManageItemSeries"
+            app:layout_constraintTop_toBottomOf="@+id/btnManageItemAdd">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtAddOns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerManageItemSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="Item"
+                    app:layout_constraintTop_toBottomOf="@+id/txtAddOns" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/edtManageItemName"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Item Name"
+            android:inputType="text"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinManageItemSeries" />
+
+        <EditText
+            android:id="@+id/edtManageItemPrice"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Item Price"
+            android:inputType="numberDecimal"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edtManageItemName"
+            app:layout_constraintStart_toStartOf="@+id/edtManageItemName"
+            app:layout_constraintTop_toBottomOf="@+id/edtManageItemName" />
+
+        <EditText
+            android:id="@+id/edtManageItemDescription"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Item Description"
+            android:inputType="textShortMessage|textLongMessage|textMultiLine|text"
+            android:paddingStart="14sp"
+            android:paddingTop="8dp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edtManageItemPrice"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edtManageItemPrice"
+            app:layout_constraintTop_toBottomOf="@+id/edtManageItemPrice" />
+
+        <Button
+            android:id="@+id/btnManageSave"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_blue"
+            android:stateListAnimator="@null"
+            android:text="Add Item"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/edtItemVariation"
+            app:layout_constraintStart_toStartOf="@+id/edtItemVariation"
+            app:layout_constraintTop_toBottomOf="@+id/edtItemVariation" />
+
+        <Spinner
+            android:id="@+id/spinManageItemSeries"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Series"
+            app:layout_constraintEnd_toEndOf="@+id/edtManageItemName"
+            app:layout_constraintStart_toStartOf="@+id/edtManageItemName"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Group Series"
+            app:layout_constraintStart_toStartOf="@+id/spinManageItemSeries"
+            app:layout_constraintTop_toBottomOf="@+id/imageManageItem" />
+
+        <ImageView
+            android:id="@+id/imageManageItem"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/product_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardManageSelectItem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -7,12 +7,12 @@
     tools:context=".Administrator">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardAdd"
+        android:id="@+id/cardHistoryManage"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/cardHistory"
-        app:layout_constraintTop_toTopOf="@+id/cardHistory">
+        app:layout_constraintStart_toEndOf="@+id/cardHistoryHome"
+        app:layout_constraintTop_toTopOf="@+id/cardHistoryHome">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="@font/karla_bold"
-        android:text="ADMIN"
+        android:text="HISTORY"
         android:textColor="@color/font_color"
         android:textFontWeight="600"
         android:textSize="14sp"
@@ -100,7 +100,7 @@
         app:srcCompat="@drawable/ic_app_logo_2" />
 
     <ImageView
-        android:id="@+id/adminUser"
+        android:id="@+id/adminHistoryUser"
         android:layout_width="21dp"
         android:layout_height="21dp"
         android:layout_marginEnd="16dp"
@@ -110,7 +110,7 @@
         app:srcCompat="@drawable/ic_user" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardHistory"
+        android:id="@+id/cardHistoryHome"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="8dp"
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/karla_bold"
-                android:text="History"
+                android:text="Home"
                 android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
@@ -152,13 +152,13 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/adminPageRecyclerView"
+        android:id="@+id/historyPageRecyclerView"
         android:layout_width="0dp"
         android:layout_height="555dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/adminUser"
-        app:layout_constraintStart_toStartOf="@+id/cardHistory"
-        app:layout_constraintTop_toBottomOf="@+id/cardHistory" />
+        app:layout_constraintEnd_toEndOf="@+id/adminHistoryUser"
+        app:layout_constraintStart_toStartOf="@+id/cardHistoryHome"
+        app:layout_constraintTop_toBottomOf="@+id/cardHistoryHome" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

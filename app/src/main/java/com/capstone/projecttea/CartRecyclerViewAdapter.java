@@ -1,71 +1,118 @@
 package com.capstone.projecttea;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerViewAdapter.ViewHolder> {
 
-  public enum CartVariation{Cart,Checkout}
-
+    public enum CartVariation {
+        Cart,
+        Checkout,
+        Admin
+    }
 
     private ArrayList<ProductModel> productModelArrayList;
     private Context context;
     CartVariation cartVariation;
-    public CartRecyclerViewAdapter(CartVariation cartVariation,ArrayList<ProductModel> productModels, Context context){
+    FirebaseFirestore firestore;
+    ViewHolder viewHolder;
+
+    public CartRecyclerViewAdapter(CartVariation cartVariation, ArrayList<ProductModel> productModels, Context context) {
         this.cartVariation = cartVariation;
         productModelArrayList = productModels;
         this.context = context;
+        firestore = FirebaseFirestore.getInstance();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater =  LayoutInflater.from(viewGroup.getContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
         View listItem;
-        if(cartVariation == CartVariation.Cart){
+        if (cartVariation == CartVariation.Cart) {
             listItem = layoutInflater.inflate(R.layout.layout_cart, viewGroup, false);
-        }
-        else{
+        } else {
             listItem = layoutInflater.inflate(R.layout.layout_checkoutcart, viewGroup, false);
         }
 
-        ViewHolder viewHolder =  new ViewHolder(listItem);
+        ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-       final String currencySign ="₱ ";
+        this.viewHolder = viewHolder;
+        final String currencySign = "₱";
         ProductModel productModel = productModelArrayList.get(position);
 
-        viewHolder.productImage.setImageResource(productModel.getProductImage());
+        if (productModel.getProductImage() == 0) {
+            StorageReference reference = FirebaseStorage.getInstance().getReference();
+            reference.child("Items/" + productModel.getImageLink()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Glide.with(context).load(uri.toString()).into(viewHolder.productImage);
+                }
+            });
+
+        } else {
+
+            viewHolder.productImage.setImageResource(productModel.getProductImage());
+        }
         viewHolder.productName.setText(productModel.getProductName());
-        viewHolder.productPrice.setText(currencySign+productModel.getPrice());
-        String[] variations = productModel.getVariations();
-
-        viewHolder.productVariations.setText("Variations: "+String.join(",",variations));
-        viewHolder.quantity.setText(productModel.getQuantity()+"");
-
-
-        if(cartVariation == CartVariation.Cart){
+        viewHolder.productPrice.setText(currencySign + productModel.getPrice());
+    //  String[] variations = productModel.getVariations();
+    //  if (variations != null) {
+    //      viewHolder.productVariations.setText("Variations: " + String.join(",", variations));
+    //
+    //  }
+        viewHolder.quantity.setText(productModel.getQuantity() + "");
+        if (cartVariation == CartVariation.Cart) {
+            viewHolder.chkBoxCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    productModel.setChecked(isChecked);
+                }
+            });
             viewHolder.productDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context,"Delete",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, productModel.getID(), Toast.LENGTH_SHORT).show();
+
+                    firestore.collection("Cart").document(productModel.getID()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context, "Item deleted from Cart", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
             viewHolder.quantityPlus.setOnClickListener(new View.OnClickListener() {
@@ -120,11 +167,19 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
 
                 }
             });
+        } else if (cartVariation == CartVariation.Admin) {
+            viewHolder.quantity.setText(productModel.getQuantity());
         }
-        else{
 
-        }
 
+    }
+
+    public ArrayList<ProductModel> getProductModelArrayList() {
+        return productModelArrayList;
+    }
+
+    public boolean isItemChecked() {
+        return viewHolder.chkBoxCart.isChecked();
     }
 
     @Override
@@ -132,31 +187,32 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         return productModelArrayList.size();
     }
 
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView productImage;
-        public TextView productName,productPrice,productVariations;
-        public ImageButton productDelete,quantityPlus,quantityMinus;
+        public TextView productName, productPrice, productVariations;
+        public ImageButton productDelete, quantityPlus, quantityMinus;
         public TextView quantity;
+        public CheckBox chkBoxCart;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            if(cartVariation == CartVariation.Cart){
-                this.productImage = (ImageView)itemView.findViewById(R.id.cartProductImage);
-                this.productName = (TextView)itemView.findViewById(R.id.cartProductName);
-                this.productVariations = (TextView)itemView.findViewById(R.id.cartVariationsValue);
+            if (cartVariation == CartVariation.Cart) {
+                this.productImage = (ImageView) itemView.findViewById(R.id.cartProductImage);
+                this.productName = (TextView) itemView.findViewById(R.id.cartProductName);
+                this.productVariations = (TextView) itemView.findViewById(R.id.cartVariationsValue);
                 this.productPrice = (TextView) itemView.findViewById(R.id.cartPrice);
 
                 this.productDelete = (ImageButton) itemView.findViewById(R.id.cartDelete);
                 this.quantity = (EditText) itemView.findViewById(R.id.cartQuantityValue);
                 this.quantityPlus = (ImageButton) itemView.findViewById(R.id.cartQuantityPlus);
                 this.quantityMinus = (ImageButton) itemView.findViewById(R.id.cartQuantityMinus);
-            }
-            else{
-                this.productImage = (ImageView)itemView.findViewById(R.id.checkCartProductImage);
-                this.productName = (TextView)itemView.findViewById(R.id.checkCartProductName);
-                this.productVariations = (TextView)itemView.findViewById(R.id.checkCartVariationsValue);
+
+                this.chkBoxCart = (CheckBox) itemView.findViewById(R.id.chkCart);
+            } else {
+                this.productImage = (ImageView) itemView.findViewById(R.id.checkCartProductImage);
+                this.productName = (TextView) itemView.findViewById(R.id.checkCartProductName);
+                this.productVariations = (TextView) itemView.findViewById(R.id.checkCartVariationsValue);
                 this.productPrice = (TextView) itemView.findViewById(R.id.checkCartPrice);
                 this.quantity = (TextView) itemView.findViewById(R.id.checkCartQuantity);
             }

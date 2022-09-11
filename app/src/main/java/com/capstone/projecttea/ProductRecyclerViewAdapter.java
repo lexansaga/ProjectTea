@@ -2,13 +2,15 @@ package com.capstone.projecttea;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -31,15 +33,24 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        String currency = "₱";
     ProductModel productModel = productModelArrayList.get(position);
-    viewHolder.productImage.setImageResource(productModel.getProductImage());
+    if(productModel.getProductImage() == 0){
+        Glide.with(context).load(productModel.getImageLink()).into(viewHolder.productImage);
+    }
+    else {
+
+        viewHolder.productImage.setImageResource(productModel.getProductImage());
+    }
     viewHolder.productName.setText(productModel.getProductName());
-    viewHolder.productPrice.setText(productModel.getPrice());
+    viewHolder.productPrice.setText(currency+productModel.getPrice());
 
     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            view.getContext().startActivity(new Intent(context,ProductDescription.class));
+            Intent intent = new Intent(context,ProductDescription.class);
+            intent.putExtra("productID",productModel.getID());
+            view.getContext().startActivity(intent);
         }
     });
 

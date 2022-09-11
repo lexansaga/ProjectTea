@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentAddons">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnAddOnsSave"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_blue"
+            android:stateListAnimator="@null"
+            android:text="Add Add Ons"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/edtAddOnsPrice"
+            app:layout_constraintStart_toStartOf="@+id/edtAddOnsPrice"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddOnsPrice" />
+
+        <EditText
+            android:id="@+id/edtAddOnsName"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Add Ons Name"
+            android:inputType="text"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardSelectAddOns" />
+
+        <EditText
+            android:id="@+id/edtAddOnsPrice"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="Add Ons Price"
+            android:inputType="text"
+            android:paddingStart="14sp"
+            android:textColorHint="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edtAddOnsName"
+            app:layout_constraintStart_toStartOf="@+id/edtAddOnsName"
+            app:layout_constraintTop_toBottomOf="@+id/edtAddOnsName" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSelectAddOns"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/btnAddOnsDelete"
+            app:layout_constraintStart_toStartOf="@+id/btnAddOnsAdd"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddOnsUpdate">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtAddOns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Add Ons"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerAddOnsSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="Add Ons"
+                    app:layout_constraintTop_toBottomOf="@+id/txtAddOns" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnAddOnsUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/btn_radiodefault"
+            android:text="Update"
+            android:textColor="@color/primary"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAddOnsAdd"
+            app:layout_constraintEnd_toStartOf="@+id/btnAddOnsDelete"
+            app:layout_constraintStart_toEndOf="@+id/btnAddOnsAdd"
+            app:layout_constraintTop_toTopOf="@+id/btnAddOnsAdd"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnAddOnsAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/btn_radioselected"
+            android:text="Add"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/edtAddOnsName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnAddOnsDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_radiodefault"
+            android:text="Delete"
+            android:textColor="@color/primary"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAddOnsUpdate"
+            app:layout_constraintEnd_toEndOf="@+id/edtAddOnsName"
+            app:layout_constraintTop_toTopOf="@+id/btnAddOnsUpdate"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
