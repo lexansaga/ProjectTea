@@ -40,30 +40,36 @@ public class Signin extends AppCompatActivity implements View.OnClickListener {
         firestore = FirebaseFirestore.getInstance();
 
         preferences = getSharedPreferences("User", MODE_PRIVATE);
-
+        SharedPreferences.Editor preferenceEditor = preferences.edit();
         String currentUser = preferences.getString("User", "").toString();
-        if (!currentUser.isEmpty()) {
-            startActivity(new Intent(getApplicationContext(), Home.class));
-            finish();
-            return;
-        }
+        String accountType = preferences.getString("AccountType", "").toString();
+        //This will get the current user and its type
 
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getApplicationContext(),Home.class));
+                if(edt_signin_email.getText().toString().contains("admin@gmail.com") && edt_signin_password.getText().toString().contains("admin123")){
+                    //Check if the account is an admin
+                    preferenceEditor.putString("AccountType", "Administrator");
+                    preferenceEditor.apply();
+                   startActivity(new Intent(getApplicationContext(),Administrator.class));
+                   finish();
+                   return;
+                }
+                //Else proceed to scan from data database on which is the user credential
                 Query getCredential = firestore.collection("User").whereEqualTo("Email", edt_signin_email.getText().toString()).whereEqualTo("Password", edt_signin_password.getText().toString());
                 getCredential.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         if (task.isSuccessful()) {
                             QuerySnapshot snapshot = task.getResult();
                             if (snapshot.isEmpty()) {
-                                Toast.makeText(getApplicationContext(), "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Wrong user name or password! Please try again", Toast.LENGTH_SHORT).show();
                                 return;
                             }
 
-                            SharedPreferences.Editor preferenceEditor = preferences.edit();
+
                             for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                                 preferenceEditor.putString("User", queryDocumentSnapshot.get("Email").toString());
                             }
@@ -83,7 +89,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener {
         btn_createaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Administrator.class));
+                startActivity(new Intent(getApplicationContext(), CreateAccount.class));
             }
         });
     }

@@ -10,7 +10,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="81dp"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/primary"
         app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="12dp">
 
             <TextView
                 android:id="@+id/checkCartProductName"
@@ -39,14 +41,14 @@
                 android:id="@+id/checkCartPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="₱52.32"
                 android:textColor="@color/white"
                 android:textFontWeight="600"
                 android:textSize="19sp"
-                app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue"
-                app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue" />
+                app:layout_constraintStart_toStartOf="@+id/checkCartAddOnsValue"
+                app:layout_constraintTop_toBottomOf="@+id/checkCartAddOnsValue" />
 
             <TextView
                 android:id="@+id/checkCartQuantity"
@@ -68,19 +70,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/karla_bold"
-                android:text="Variations : Cold"
+                android:text="Variations"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/checkCartProductName"
                 app:layout_constraintTop_toBottomOf="@+id/checkCartProductName" />
 
+            <TextView
+                android:id="@+id/checkCartAddOnsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="AddOns"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue"
+                app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue" />
+
             <ImageView
                 android:id="@+id/checkCartProductImage"
                 android:layout_width="122dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:adjustViewBounds="false"
                 android:cropToPadding="false"
                 android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/item_placeholder" />

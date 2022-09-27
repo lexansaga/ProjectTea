@@ -100,7 +100,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView21" />
 
     <ImageView
-        android:id="@+id/adminHistoryUser4"
+        android:id="@+id/adminManageUser"
         android:layout_width="21dp"
         android:layout_height="21dp"
         android:layout_marginEnd="16dp"
@@ -115,7 +115,7 @@
         android:layout_marginTop="18dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/adminHistoryUser4"
+        app:layout_constraintEnd_toEndOf="@+id/adminManageUser"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toBottomOf="@+id/cardManageHome">
 

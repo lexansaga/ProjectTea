@@ -80,23 +80,23 @@
             app:srcCompat="@drawable/ic_app_logo_2" />
 
         <ImageView
-            android:id="@+id/homeUser"
+            android:id="@+id/productDescUser"
             android:layout_width="21dp"
             android:layout_height="21dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/homeCart"
+            app:layout_constraintBottom_toBottomOf="@+id/pdCart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/homeCart"
+            app:layout_constraintTop_toTopOf="@+id/pdCart"
             app:layout_constraintVertical_bias="0.545"
             app:srcCompat="@drawable/ic_user" />
 
         <ImageView
-            android:id="@+id/homeCart"
+            android:id="@+id/pdCart"
             android:layout_width="21dp"
             android:layout_height="25dp"
             android:layout_marginEnd="12dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintEnd_toStartOf="@+id/homeUser"
+            app:layout_constraintEnd_toStartOf="@+id/productDescUser"
             app:layout_constraintTop_toTopOf="@+id/textView7"
             app:layout_constraintVertical_bias="0.461"
             app:srcCompat="@drawable/ic_cart" />
@@ -109,7 +109,7 @@
             app:cardCornerRadius="2dp"
             app:cardElevation="0dp"
             app:cardPreventCornerOverlap="true"
-            app:layout_constraintEnd_toEndOf="@+id/homeUser"
+            app:layout_constraintEnd_toEndOf="@+id/productDescUser"
             app:layout_constraintStart_toStartOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/imageView5">
 
@@ -164,7 +164,7 @@
                         android:id="@+id/textView24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="28dp"
+                        android:layout_marginTop="16dp"
                         android:fontFamily="@font/karla_bold"
                         android:text="Select Variations"
                         android:textFontWeight="600"
@@ -173,17 +173,28 @@
                         app:layout_constraintTop_toBottomOf="@+id/descItemDescription" />
 
                     <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/karla_bold"
+                        android:text="Select Add Ons"
+                        android:textFontWeight="600"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toBottomOf="@+id/descSpinnerVariations" />
+
+                    <TextView
                         android:id="@+id/textView25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         android:fontFamily="@font/karla_bold"
                         android:text="Quantity"
                         android:textColor="@color/font_color"
                         android:textFontWeight="600"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/descSpinnerVariations"
-                        app:layout_constraintTop_toBottomOf="@+id/descSpinnerVariations" />
+                        app:layout_constraintTop_toBottomOf="@+id/descSelectedAddOns" />
 
                     <TextView
                         android:id="@+id/descItemDescription"
@@ -221,6 +232,17 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/textView24"
                         app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+                    <Spinner
+                        android:id="@+id/descAddOns"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="8dp"
+                        android:contentDescription="Add Ons"
+                        android:spinnerMode="dialog"
+                        app:layout_constraintEnd_toEndOf="@+id/descSpinnerVariations"
+                        app:layout_constraintStart_toStartOf="@+id/textView30"
+                        app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
                     <EditText
                         android:id="@+id/descQuantityValue"
@@ -272,6 +294,14 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView25"
                         app:srcCompat="@drawable/ic_baseline_add_24" />
+
+                    <ListView
+                        android:id="@+id/descSelectedAddOns"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="@+id/descAddOns"
+                        app:layout_constraintStart_toStartOf="@+id/descAddOns"
+                        app:layout_constraintTop_toBottomOf="@+id/descAddOns" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </ScrollView>

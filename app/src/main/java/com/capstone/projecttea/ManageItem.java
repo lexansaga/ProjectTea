@@ -209,21 +209,26 @@ public class ManageItem extends Fragment {
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
+
+            //This code handles the saving of the item
             @Override
             public void onClick(View view) {
+
                 String id = itemName.getText().toString().trim() + "|" + itemVariations.getText().toString().trim();
                 if (selectedFunction.equals("Delete")) {
+                    // If the selected function was delete , The function of this block will be delete
                     if (spinItem.getSelectedItem().toString().contains("Choose")) {
                         Toast.makeText(context, "Select " + spinItem.getContentDescription() + " first!", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    //We build an alert dialog to confirm the user if he/she's sure to delete the item
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
                     builder.setTitle("Confirm");
                     builder.setMessage("Are you sure you want to delete this item?");
 
                     builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
+                    //Once yes , we set our query on Items Collection in which directed to selected item , then if that item exists we delete the item
                         public void onClick(DialogInterface dialog, int which) {
                             // Do nothing but close the dialog
                             storageReference.child("Items/" + spinItem.getSelectedItem().toString()).delete();
@@ -249,31 +254,128 @@ public class ManageItem extends Fragment {
 
                     AlertDialog alert = builder.create();
                     alert.show();
+                    alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.font_color));
+                    alert.getButton(alert.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.font_color));
 
                     return;
                 }
-
+                if(itemName.getText().toString() == "" || itemVariations.getText().toString() == "" || itemPrice.getText().toString() == ""){
+                    Toast.makeText(getContext(), "Please fill up Product Name , Variations or Price", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 //Default for Add and Update
-
+                // Adding and deleting has the same block of code, Due to firebase flexibility
+                // First we need to set the item on the Hashmap
                 String selectedSeries = spinSeries.getSelectedItem().toString().trim();
-                String ImageLink =  firebaseHandler.UploadImage(filePath,"Items/"+id).GetImageLink();
                 Map<String, Object> data = new HashMap<>();
-                data.put("ID", itemName.getText().toString().trim() + "|" + itemVariations.getText().toString());
+                String itemID = itemName.getText().toString().trim() + "|" + itemVariations.getText().toString();
+                data.put("ID", itemID);
                 data.put("Series", selectedSeries.contains("Choose") ? "Default" : selectedSeries);
                 data.put("Name", itemName.getText().toString().trim());
                 data.put("Description", itemDescription.getText().toString().trim());
                 data.put("Variation", itemVariations.getText().toString().trim());
                 data.put("Price", itemPrice.getText().toString().trim());
-                data.put("ImageLink", ImageLink);
+               data.put("ImageLink", "https://firebasestorage.googleapis.com/v0/b/projecttea-5d955.appspot.com/o/Items%2Fitem_placeholder.png?alt=media&token=cd69d117-5198-4fe1-9ba0-e8c2b0b0ce98");
 
-                firestore.collection("Items").document(id).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        firebaseHandler.FillSpinner(spinItem, firestore.collection("Items"));
-                        Toast.makeText(context, "Item Added Successfully", Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+               //Then get the image path before saviing it to the database
+              if(filePath == null){
+                  firestore.collection("Items").document(id).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                      @Override
+                      public void onSuccess(Void unused) {
+                          firebaseHandler.FillSpinner(spinItem, firestore.collection("Items"));
+                          ResetDefault();
+                          Toast.makeText(context, "Item Added Successfully", Toast.LENGTH_SHORT).show();
+
+                      }
+                  });
+                  return;
+              }
+                // Code for showing progressDialog while uploading
+                //Hanlding Item Image Upload
+                ProgressDialog progressDialog
+                        = new ProgressDialog(context);
+                progressDialog.setTitle("Uploading...");
+                progressDialog.show();
+
+                // Defining the child of storageReference
+                StorageReference ref
+                        = storageReference
+                        .child(
+                                "Items/"+itemID);
+
+                // adding listeners on upload
+                // or failure of image
+                ref.putFile(filePath)
+                        .addOnSuccessListener(
+                                new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                    @Override
+                                    public void onSuccess(
+                                            UploadTask.TaskSnapshot taskSnapshot) {
+
+                                        // Image uploaded successfully
+                                        // Dismiss dialog
+                                        progressDialog.dismiss();
+                                        Toast
+                                                .makeText(context,
+                                                        "Image Uploaded!!",
+                                                        Toast.LENGTH_SHORT)
+                                                .show();
+                                        taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Uri> task) {
+                                                String link = task.getResult().toString();
+
+                                                data.put("ImageLink",link);
+
+                                                firestore.collection("Items").document(id).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        firebaseHandler.FillSpinner(spinItem, firestore.collection("Items"));
+                                                        Toast.makeText(context, "Item Added Successfully", Toast.LENGTH_SHORT).show();
+                                                        ResetDefault();
+                                                    }
+                                                });
+                                            }
+                                        });
+
+                                    }
+                                })
+
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                // Error, Image not uploaded
+                                progressDialog.dismiss();
+                                Toast
+                                        .makeText(context,
+                                                "Failed " + e.getMessage(),
+                                                Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        })
+                        .addOnProgressListener(
+                                new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                    // Progress Listener for loading
+                                    // percentage on the dialog box
+                                    @Override
+                                    public void onProgress(
+                                            UploadTask.TaskSnapshot taskSnapshot) {
+                                        double progress
+                                                = (100.0 *
+                                                taskSnapshot.getBytesTransferred() /
+                                                taskSnapshot.getTotalByteCount());
+                                        progressDialog.setMessage(
+                                                "Uploaded " +
+                                                        (int) progress + "%");
+                                    }
+                                });
+
+
+
 
             }
         });
@@ -314,6 +416,17 @@ public class ManageItem extends Fragment {
     }
 
 
+    void ResetDefault(){
+        spinItem.setSelection(0);
+        spinSeries.setSelection(0);
+
+        imgItem.setImageDrawable(getResources().getDrawable(R.drawable.product_placeholder,null));
+
+        itemName.setText("");
+        itemPrice.setText("");
+        itemDescription.setText("");
+        itemVariations.setText("");
+    }
 
     void setSelected(Button button, Button[] arr, String selected) {
 
@@ -331,6 +444,7 @@ public class ManageItem extends Fragment {
                 btnSave.setText(selectedFunction + " Item");
                 if (selectedFunction.equals("Add")) {
                     cardSelectItem.setVisibility(View.GONE);
+                    ResetDefault();
                 } else {
                     cardSelectItem.setVisibility(View.VISIBLE);
                 }

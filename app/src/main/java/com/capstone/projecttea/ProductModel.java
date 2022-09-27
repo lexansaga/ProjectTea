@@ -7,7 +7,12 @@ public class ProductModel implements Serializable {
     String ID;
     int productImage;
     String imageLink;
-    String productName, description,price;
+    String productName;
+    String description;
+    String price;
+
+
+    String addOns;
     String[] variations;
 
     String variation;
@@ -16,6 +21,39 @@ public class ProductModel implements Serializable {
     OrderModel orderModel;
     UserModel userModel;
 
+    public ProductModel(){}
+
+
+    public ProductModel(String ID, OrderModel orderModel, UserModel userModel) {
+        this.ID = ID;
+        this.orderModel = orderModel;
+        this.userModel = userModel;
+    }
+    public ProductModel(String ID, int productImage, String productName, String price, String[] variations, int quantity) {
+        this.ID = ID;
+        this.productImage = productImage;
+        this.productName = productName;
+        this.price = price;
+        this.variations = variations;
+        this.quantity = quantity;
+    }
+
+
+    public ProductModel(String ID, String imageLink, String productName, String price) {
+        this.ID = ID;
+        this.imageLink = imageLink;
+        this.productName = productName;
+        this.price = price;
+    }
+
+
+    public ProductModel(String ID, String imageLink, String productName, String price, String variation, int quantity) {
+        this.ID = ID;
+        this.imageLink = imageLink;
+        this.productName = productName;
+        this.price = price;
+        this.variation = variation;
+        this.quantity = quantity;}
 
 
     public String getID() {
@@ -114,38 +152,15 @@ public class ProductModel implements Serializable {
         this.userModel = userModel;
     }
 
-
-    public ProductModel(String ID, OrderModel orderModel, UserModel userModel) {
-        this.ID = ID;
-        this.orderModel = orderModel;
-        this.userModel = userModel;
+    public String getAddOns() {
+        return addOns;
     }
-    public ProductModel(String ID, int productImage, String productName, String price, String[] variations, int quantity) {
-        this.ID = ID;
-        this.productImage = productImage;
-        this.productName = productName;
-        this.price = price;
-        this.variations = variations;
-        this.quantity = quantity;
+
+    public void setAddOns(String addOns) {
+        this.addOns = addOns;
     }
 
 
-    public ProductModel(String ID, String imageLink, String productName, String price) {
-        this.ID = ID;
-        this.imageLink = imageLink;
-        this.productName = productName;
-        this.price = price;
-    }
-
-
-    public ProductModel(String ID, String imageLink, String productName, String price, String variation, int quantity) {
-        this.ID = ID;
-        this.imageLink = imageLink;
-        this.productName = productName;
-        this.price = price;
-        this.variation = variation;
-        this.quantity = quantity;
-    }
 
 
 

@@ -142,9 +142,17 @@ public class FragmentAddons extends Fragment {
 
                     AlertDialog alert = builder.create();
                     alert.show();
+                    alert.getButton(alert.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.font_color));
+                    alert.getButton(alert.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.font_color));
+                    return;
+                }
+                if(edtAddOnsName.getText().toString().isEmpty() || edtAddOnsPrice.getText().toString().isEmpty()){
+
+                    Toast.makeText(getContext(), "Please fill up AddOns Name and Price", Toast.LENGTH_SHORT).show();
 
                     return;
                 }
+
 
                 //Default for Add and Update
                 Map<String, Object> data = new HashMap<>();
@@ -155,6 +163,7 @@ public class FragmentAddons extends Fragment {
                     @Override
                     public void onSuccess(Void unused) {
                         firebaseHandler.FillSpinner(spinAddOns, firestore.collection("Add_Ons"));
+                        ResetDefault();
                         Toast.makeText(context, "Add Ons Added Successfully", Toast.LENGTH_SHORT).show();
 
                     }
@@ -165,6 +174,12 @@ public class FragmentAddons extends Fragment {
         });
 
         return view;
+    }
+
+    void ResetDefault(){
+        spinAddOns.setSelection(0);
+        edtAddOnsName.setText("");
+        edtAddOnsPrice.setText("");
     }
 
     void setSelected(Button button,Button[] arr,String selected){

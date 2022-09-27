@@ -2,7 +2,22 @@ package com.capstone.projecttea;
 
 public class UserModel {
 
-    String name,contact,address;
+    String name,contact,address,email;
+    public UserModel(String name, String contact, String address, String email) {
+        this.name = name;
+        this.contact = contact;
+        this.address = address;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public  UserModel(){
         
     }

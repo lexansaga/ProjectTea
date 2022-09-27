@@ -22,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/primary"
-            android:paddingBottom="16dp"
             android:outlineSpotShadowColor="@android:color/transparent"
+            android:paddingBottom="16dp"
             app:elevation="0dp">
 
             <TextView
@@ -35,6 +35,7 @@
                 android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/adminOrderNumber"
                 app:layout_constraintStart_toStartOf="@+id/adminOrderContact"
                 app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue17" />
@@ -48,6 +49,7 @@
                 android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/adminOrderName"
                 app:layout_constraintStart_toStartOf="@+id/adminOrderName"
                 app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue19" />
@@ -56,7 +58,6 @@
                 android:id="@+id/adminOrderName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="72dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Name"
                 android:textColor="@color/white"
@@ -65,7 +66,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/checkCartVariationsValue5"
                 app:layout_constraintEnd_toEndOf="@+id/adminOrderNumber"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/checkCartVariationsValue5"
+                app:layout_constraintStart_toStartOf="@+id/adminOrdersID"
                 app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue5"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -79,6 +80,7 @@
                 android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue19"
                 app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue19" />
 
@@ -92,6 +94,7 @@
                 android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue5"
                 app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue5" />
 
@@ -112,31 +115,76 @@
                 android:id="@+id/adminOrderNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/karla"
                 android:text="9999"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textView19"
                 app:layout_constraintTop_toTopOf="@+id/textView19"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/adminOrderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/karla"
+                android:text="In Progress"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/adminOrderNumber"
+                app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue5" />
 
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Order #"
                 android:textColor="@color/white"
                 android:textFontWeight="600"
                 app:layout_constraintBottom_toBottomOf="@+id/adminOrdersID"
-                app:layout_constraintEnd_toEndOf="@+id/btn_cancel"
-                app:layout_constraintStart_toEndOf="@+id/adminOrdersID"
-                app:layout_constraintTop_toTopOf="@+id/adminOrdersID"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintEnd_toStartOf="@+id/adminOrderNumber"
+                app:layout_constraintTop_toTopOf="@+id/adminOrdersID" />
+
+            <TextView
+                android:id="@+id/txtAdminOrderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/karla_bold"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textFontWeight="600"
+                app:layout_constraintBottom_toBottomOf="@+id/lblAdminOrderDate"
+                app:layout_constraintEnd_toEndOf="@+id/adminOrderNumber"
+                app:layout_constraintTop_toTopOf="@+id/lblAdminOrderDate"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/lblAdminOrderDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="Date Order"
+                android:textColor="@color/white"
+                android:textFontWeight="600"
+                app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue5"
+                app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue5" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/karla_bold"
+                android:text="Status"
+                android:textColor="@color/white"
+                android:textFontWeight="600"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/textView19"
+                app:layout_constraintTop_toTopOf="@+id/adminOrderName" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -175,8 +223,8 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/btn_orderready"
-                app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue17"
-                app:layout_constraintTop_toBottomOf="@+id/adminOrderAddress" />
+                app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue5"
+                app:layout_constraintTop_toBottomOf="@+id/lblAdminOrderDate" />
 
             <Button
                 android:id="@+id/btn_cancel"
@@ -218,7 +266,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/adminOrderRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/adminOrderRecyclerView"
         app:layout_constraintTop_toBottomOf="@+id/adminOrderRecyclerView">
@@ -227,7 +275,9 @@
             android:id="@+id/bottomLevel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primary">
+            android:background="@color/primary"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:id="@+id/adminOrderShippingFee"
@@ -238,6 +288,7 @@
                 android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/adminOrderSubtotal"
                 app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue24" />
 
@@ -251,32 +302,36 @@
                 android:textColor="@color/white"
                 android:textFontWeight="300"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/checkCartVariationsValue25"
                 app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue25" />
 
             <TextView
                 android:id="@+id/adminOrderTotal"
-                android:layout_width="32dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="120"
                 android:textColor="@color/white"
                 android:textFontWeight="600"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/adminOrderShippingFee"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkCartVariationsValue23"
+                app:layout_constraintStart_toEndOf="@+id/checkCartVariationsValue23"
                 app:layout_constraintTop_toTopOf="@+id/checkCartVariationsValue23" />
 
             <TextView
                 android:id="@+id/checkCartVariationsValue23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/karla_bold"
                 android:text="Total"
                 android:textColor="@color/white"
                 android:textFontWeight="500"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue24"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue24" />
 
             <TextView
@@ -289,6 +344,7 @@
                 android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/checkCartVariationsValue25"
                 app:layout_constraintTop_toBottomOf="@+id/checkCartVariationsValue25" />
 
@@ -303,6 +359,7 @@
                 android:textColor="@color/white"
                 android:textFontWeight="500"
                 android:textSize="12sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

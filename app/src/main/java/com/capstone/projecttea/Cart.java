@@ -42,6 +42,7 @@ public class Cart extends AppCompatActivity {
     RecyclerView productRecyclerView;
     CartRecyclerViewAdapter adapter;
     ArrayList<ProductModel> productModels;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,27 +62,39 @@ public class Cart extends AppCompatActivity {
         getCart.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapShots, @Nullable FirebaseFirestoreException e) {
-              productModels  = new ArrayList<>();;
+                productModels = new ArrayList<>();
 
 
-                    for (QueryDocumentSnapshot snapShot : snapShots
-                    ) {
-                        String id = snapShot.get("ID").toString().trim();
-                        String productID = snapShot.get("ProductID").toString().trim();
-                        String userID = snapShot.get("UserID").toString().trim();
-                        String name = snapShot.get("ProductName").toString().trim();
-                        String price = snapShot.get("ProductPrice").toString().trim();
-                        int quantity = Integer.parseInt(snapShot.get("Quantity").toString().trim());
-                        //  String imageLink = snapShot.get("ImageLink").toString().trim();
-                        String defaultImageLink = "https://firebasestorage.googleapis.com/v0/b/projecttea-5d955.appspot.com/o/Items%2Fitem_placeholder.png?alt=media&token=cd69d117-5198-4fe1-9ba0-e8c2b0b0ce98";
-                        productModels.add(new ProductModel(id,  productID, name, price, productID.split("|")[1], quantity));
 
-                    }
-                    adapter = new CartRecyclerViewAdapter(CartRecyclerViewAdapter.CartVariation.Cart, productModels, getApplicationContext());
-                    productRecyclerView.setHasFixedSize(true);
-                    productRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    productRecyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                for (QueryDocumentSnapshot snapShot : snapShots
+                ) {
+                    String id = snapShot.get("ID").toString().trim();
+                    String productID = snapShot.get("ProductID").toString().trim();
+                    String userID = snapShot.get("UserID").toString().trim();
+                    String name = snapShot.get("ProductName").toString().trim();
+                    String price = snapShot.get("ProductPrice").toString().trim();
+                    String addOns = snapShot.get("AddOns").toString().trim();
+                    String variation = Utils.CheckTextIfNull(snapShot.get("Variation"),"No Variation");
+                    int quantity = Integer.parseInt(snapShot.get("Quantity").toString().trim());
+                    //  String imageLink = snapShot.get("ImageLink").toString().trim();
+                    String defaultImageLink = "https://firebasestorage.googleapis.com/v0/b/projecttea-5d955.appspot.com/o/Items%2Fitem_placeholder.png?alt=media&token=cd69d117-5198-4fe1-9ba0-e8c2b0b0ce98";
+
+                    ProductModel model = new ProductModel();
+                    model.setID(id);
+                    model.setImageLink(productID);
+                    model.setProductName(name);
+                    model.setPrice(price);
+                    model.setVariation(variation);
+                    model.setQuantity(quantity);
+                    model.setAddOns(addOns);
+                    // productModels.add(new ProductModel(id,  productID, name, price, productID.split("|")[1], quantity));
+                    productModels.add(model);
+                }
+                adapter = new CartRecyclerViewAdapter(CartRecyclerViewAdapter.CartVariation.Cart, productModels, getApplicationContext());
+                productRecyclerView.setHasFixedSize(true);
+                productRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                productRecyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
 
 
             }
@@ -92,23 +105,41 @@ public class Cart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<ProductModel> models = new ArrayList<>();
-                for(int i = 0; i < adapter.getItemCount();i++){
-                    if(productModels.get(i).isChecked()){
+
+                for (int i = 0; i < adapter.getItemCount(); i++) {
+                    if (productModels.get(i).isChecked()) {
                         String id = productModels.get(i).getID(); // Cart ID
                         String productId = productModels.get(i).getImageLink();
                         String name = productModels.get(i).getProductName();
                         String price = productModels.get(i).getPrice();
                         String variation = productModels.get(i).getVariation();
+                        String addOns = productModels.get(i).getAddOns();
                         int quantity = productModels.get(i).getQuantity();
-                        models.add(new ProductModel(id,productId,name,price,variation,quantity));
-                     //   Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+
+                        ProductModel model = new ProductModel();
+                        model.setID(id);
+                        model.setImageLink(productId);
+                        model.setProductName(name);
+                        model.setPrice(price);
+                        model.setVariation(variation);
+                        model.setQuantity(quantity);
+                        model.setAddOns(addOns);
+                        models.add(model);
+                        //  models.add(new ProductModel(id, productId, name, price, variation, quantity));
+                        //   Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
                     }
 
-           //       Toast.makeText(Cart.this, ""+productModels.get(i).isChecked(), Toast.LENGTH_SHORT).show();
+                    //       Toast.makeText(Cart.this, ""+productModels.get(i).isChecked(), Toast.LENGTH_SHORT).show();
+                }
+                if(models.size() <= 0 || adapter.getItemCount() <= 0){
+                    Toast.makeText(getApplicationContext(), "Please select item!", Toast.LENGTH_SHORT).show();
+                        return
+                                ;
                 }
                 Intent intent = new Intent(getApplicationContext(), CheckoutPage.class);
-                intent.putExtra("checkout",models);
+                intent.putExtra("checkout", models);
                 startActivity(intent);
+
             }
         });
 
@@ -121,7 +152,6 @@ public class Cart extends AppCompatActivity {
         btnUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //  startActivity(new Intent(getApplicationContext(),User.class));
 
                 PopupMenu popup = new PopupMenu(getApplicationContext(), view);
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -133,6 +163,11 @@ public class Cart extends AppCompatActivity {
                                 return true;
                             case R.id.user_history:
                                 startActivity(new Intent(getApplicationContext(), AdminHistory.class));
+                                return true;
+                            case R.id.user_logout:
+                                sharedPreferences.edit().remove("User").apply();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
                                 return true;
                             default:
                                 return false;

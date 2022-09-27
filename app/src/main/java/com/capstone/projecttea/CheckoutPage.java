@@ -39,7 +39,7 @@ public class CheckoutPage extends AppCompatActivity {
     TextView txtName,txtContact,txtAddress,txtSubTotal,txtDeliveryFee,txtTotal;
 
     FirebaseFirestore firestore;
-    String user;
+    String user,buyNow;
     final String currencySign = "₱";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,13 @@ public class CheckoutPage extends AppCompatActivity {
     Bundle extras = getIntent().getExtras();
         SharedPreferences preferences = getSharedPreferences("User",MODE_PRIVATE);
     if(extras != null){
-        productModels  =  (ArrayList<ProductModel>) getIntent().getSerializableExtra("checkout");
+        buyNow = Utils.CheckTextIfNull(extras.get("isBuyNow"),"false");
+        if(buyNow.contains("true")){
+            productModels  =  (ArrayList<ProductModel>) getIntent().getSerializableExtra("cart");
+        }
+        else{
+            productModels  =  (ArrayList<ProductModel>) getIntent().getSerializableExtra("checkout");
+        }
         user = preferences.getString("User","").toString();
     }
 
@@ -105,10 +111,21 @@ public class CheckoutPage extends AppCompatActivity {
                 String name = productModels.get(i).getProductName();
                 Double price = Double.parseDouble(productModels.get(i).getPrice());
                 String variation = productModels.get(i).getVariation();
+                String addons = productModels.get(i).getAddOns();
                 int quantity = productModels.get(i).getQuantity();
                 subTotal += (quantity * price);
 
-            models.add(new ProductModel(id,  productId, name, String.valueOf(price), productId.split("|")[1], quantity));
+                ProductModel productModel = new ProductModel();
+                productModel.setID(id);
+                productModel.setImageLink(productId);
+                productModel.setProductName(name);
+                productModel.setPrice(String.valueOf(price));
+                productModel.setVariation(variation);
+                productModel.setQuantity(quantity);
+                productModel.setAddOns(addons);
+
+                models.add(productModel);
+          //  models.add(new ProductModel(id,  productId, name, String.valueOf(price), productId.split("|")[1], quantity));
 
 
         }
@@ -157,18 +174,25 @@ public class CheckoutPage extends AppCompatActivity {
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Initiate data and put it on an HashMap before inserting on the database
                 String id = firestore.collection("Orders").document(user).collection("Orders").document().getId();
                 String timeanddatenow = Utils.TimeAndDateNow("");
+                String timeanddatenowName = Utils.TimeAndDateNow("datename");
                 Map<String, Object> data = new HashMap<>();
                 data.put("ID",id);
                 data.put("UserID",user);
                 data.put("Total",txtTotal.getText().toString().trim());
                 data.put("TimeOrder",timeanddatenow);
                 data.put("Status","InProgress");
+                data.put("OrderNo",Utils.TimeAndDateNow("time"));
+                data.put("TimeOrderName",timeanddatenowName);
+                //***********************************************************************
+
 
                 firestore.collection("Orders").document(user).collection("Orders").document(id).set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                       //Loop on Product Model array for Mass insert on Order Collection on Database
                         double total = 0;
                         for (ProductModel productModel: models) {
                             String uid = firestore.collection("Orders").document(user).collection("Product").document().getId();
@@ -177,19 +201,30 @@ public class CheckoutPage extends AppCompatActivity {
                             String name = productModel.getProductName();
                             Double price = Double.parseDouble(productModel.getPrice());
                             String variation = productModel.getVariation();
+                            String addons = productModel.getAddOns();
                             int quantity = productModel.getQuantity();
                             double itemPrice = price * quantity;
                             total += (quantity * price);
                             Map<String, Object> productData = new HashMap<>();
                             productData.put("ID",uid);
                             productData.put("OrderID",id);
+                            productData.put("ProductID",productModel.getID());
+                            productData.put("ImageLink",productModel.getImageLink());
                             productData.put("Name",name);
                             productData.put("Quantity",quantity);
+                            productData.put("Variation",variation);
                             productData.put("Price",price);
                             productData.put("Total_Price",itemPrice);
                             productData.put("TimeOrder",timeanddatenow);
+                            productData.put("AddOns",addons);
+                            //************************************************************
 
+
+                            //After checking out delete the item on cart
                             firestore.collection("Cart").document(cId).delete();
+                            //*****************************************
+
+                            // Add the data now on Orders Collection
                             firestore.collection("Orders").document(user).collection("Product").document(uid).set(productData).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -197,6 +232,7 @@ public class CheckoutPage extends AppCompatActivity {
 
                                 }
                             });
+                            // ***************************************
                         }
                     }
                 });

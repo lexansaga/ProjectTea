@@ -21,18 +21,21 @@
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_create_account.xml" value="0.15427350427350428" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
-        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_manage.xml" value="0.1" />
-        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_product_description.xml" value="0.25" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_manage.xml" value="0.25" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_product_description.xml" value="0.31496062992125984" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/activity_user.xml" value="0.25" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/fragment_addons.xml" value="0.33" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/fragment_manage_item.xml" value="0.22" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/fragment_series.xml" value="0.33" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/fragment_variations.xml" value="0.33" />
-        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_adminorders.xml" value="0.25" />
-        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_cart.xml" value="0.25" />
-        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_checkoutcart.xml" value="0.5" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_adminorders.xml" value="0.5418918918918919" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_cart.xml" value="0.5050505050505051" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_checkoutcart.xml" value="0.33" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_items.xml" value="0.5" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/layout/layout_list_addons.xml" value="0.5" />
         <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/menu/menu_user.xml" value="0.25" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.194" />
+        <entry key="..\:/Lexan/Github/Android/ProjectTea/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.194" />
         <entry key="..\:/Lexan/Github/ProjectTea/app/src/main/res/drawable/btn_blue.xml" value="0.193" />
         <entry key="..\:/Lexan/Github/ProjectTea/app/src/main/res/layout/activity_create_account.xml" value="0.2234513274336283" />
         <entry key="..\:/Lexan/Github/ProjectTea/app/src/main/res/layout/activity_home.xml" value="0.9" />

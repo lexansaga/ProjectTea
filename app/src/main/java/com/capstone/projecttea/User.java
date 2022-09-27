@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User extends AppCompatActivity {
     EditText edtFullName,edtContactNo,edtAddress,edtUsername,edtCurrentPass,edtNewPassword;
     Button btnSave;
@@ -62,6 +65,14 @@ public class User extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),Cart.class));
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,Object> data = new HashMap<>();
+                data.put("","");
             }
         });
 

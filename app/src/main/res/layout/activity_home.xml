@@ -67,7 +67,7 @@
         app:srcCompat="@drawable/ic_cart" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/edtSearchTea"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
@@ -90,10 +90,26 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="585dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/homeTabLayout"
+        app:layout_constraintStart_toStartOf="@+id/homeTabLayout"
+        app:layout_constraintTop_toBottomOf="@+id/homeTabLayout" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/homeTabLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+        app:tabMode="scrollable"
+        app:tabIndicatorColor="@color/primary"
+        app:tabIndicatorHeight="150dp"
+        app:tabIndicatorGravity="center"
+        app:tabSelectedTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/edtSearchTea"
+        app:layout_constraintStart_toStartOf="@+id/edtSearchTea"
+        app:layout_constraintTop_toBottomOf="@+id/edtSearchTea" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,8 @@
 package com.capstone.projecttea;
 
 public class OrderModel {
-    String OrderNumber,OrderID,Subtotal,ShippingFee,GrandTotal,Status;
+    String OrderNumber,OrderID,Subtotal,ShippingFee,GrandTotal,Status,Date;
+
 
     public OrderModel(){
 
@@ -13,6 +14,13 @@ public class OrderModel {
         ShippingFee = shippingFee;
         GrandTotal = grandTotal;
         Status = status;
+    }
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 
     public String getStatus() {
