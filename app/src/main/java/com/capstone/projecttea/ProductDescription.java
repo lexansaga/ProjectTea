@@ -31,6 +31,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -251,6 +252,30 @@ public class ProductDescription extends AppCompatActivity implements View.OnClic
                     //********************************************
 
 
+
+                }
+            });
+
+            productVariations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(productVariations.getSelectedItem().toString().contains("Choose")){
+                        
+                        return;
+                    }
+                    firestore.collection("Items").document(productName.getText().toString()+"|"+productVariations.getSelectedItem().toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            String price = Utils.CheckTextIfNull(documentSnapshot.get("Price"),"No Price");
+                            Toast.makeText(getApplicationContext(), price, Toast.LENGTH_SHORT).show();
+
+                            productPrice.setText("₱"+price);
+                        }
+                    });
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
             });
