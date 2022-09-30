@@ -237,6 +237,7 @@ public class CheckoutPage extends AppCompatActivity {
                     }
                 });
                 startActivity(new Intent(getApplicationContext(),CheckoutSuccess.class));
+                finish();
             }
         });
     }

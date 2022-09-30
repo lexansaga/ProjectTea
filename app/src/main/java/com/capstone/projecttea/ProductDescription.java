@@ -163,9 +163,13 @@ public class ProductDescription extends AppCompatActivity implements View.OnClic
                     model.setID(id);
                     model.setImageLink(productID);
                     model.setProductName(buyNowName);
-                    model.setPrice(buyNowPrice);
                     model.setVariation(buyNowVariation);
                     model.setQuantity(Integer.parseInt(quantity.getText().toString()));
+                    Log.e("Buy now Price",buyNowPrice);
+                    Log.e("Buy now Quantity",String.valueOf(model.getQuantity()));
+                    Log.e("Buy now Addons Price",String.valueOf(addOnsPrice));
+                    Log.e("Buy Now Total Price",String.valueOf((Double.valueOf(buyNowPrice) + Double.valueOf(addOnsPrice)) * Double.valueOf(model.quantity)));
+                    model.setPrice(String.valueOf((Double.valueOf(buyNowPrice) + Double.valueOf(addOnsPrice))));
                     model.setAddOns(String.join(",",addOnsName));
 
                     //********************************************************************

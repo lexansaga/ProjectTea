@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -11,12 +13,16 @@ import androidx.cardview.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -100,6 +106,30 @@ public class FragmentSeries extends Fragment {
         setSelected(btnUpdate,new Button[]{btnAdd,btnDelete},"Update");
         setSelected(btnDelete,new Button[]{btnAdd,btnUpdate},"Delete");
         firebaseHandler.FillSpinner(spinSelectSeries, firestore.collection("Series"));
+
+        spinSelectSeries.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                firestore.collection("Series").document(spinSelectSeries.getSelectedItem().toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isComplete()) {
+                            DocumentSnapshot snapshot = task.getResult();
+                            if (snapshot.exists()) {
+                                String name = snapshot.get("Name").toString();
+                                edtSeriesName.setText(name);
+                            }
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,10 +148,11 @@ public class FragmentSeries extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             // Do nothing but close the dialog
 
-                            firestore.collection("Series").document(edtSeriesName.getText().toString().trim()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            firestore.collection("Series").document(spinSelectSeries.getSelectedItem().toString()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(context, "Series deleted Sucessfully", Toast.LENGTH_SHORT).show();
+                                    ResetDefault();
                                 }
                             });
                             dialog.dismiss();

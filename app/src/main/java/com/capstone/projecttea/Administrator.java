@@ -44,6 +44,7 @@ public class Administrator extends AppCompatActivity {
     ImageView user;
 
     SharedPreferences preferences;
+    boolean onDataChanged = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +122,10 @@ public class Administrator extends AppCompatActivity {
                     //      Toast.makeText(getApplicationContext(), "No Value", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(onDataChanged == true){
+                        productModels.clear();
+                        onDataChanged = false;
+                }
                 for(QueryDocumentSnapshot userSnapshot : userSnapshots){
                     //In this block of code, will get the Information of the Users which will be needed later
                     String userEmail = userSnapshot.get("Email").toString();
@@ -129,7 +134,7 @@ public class Administrator extends AppCompatActivity {
                     Log.e("OrderEmail",userEmail);
                     String userContact =Utils.CheckTextIfNull(userSnapshot.get("Contact"),"No Contact");
                     String userAddress = Utils.CheckTextIfNull(userSnapshot.get("Address"),"No Address");
-                    Query orders = firestore.collection("Orders").document(userEmail).collection("Orders").orderBy("TimeOrder", Query.Direction.DESCENDING);
+                    Query orders = firestore.collection("Orders").document(userEmail).collection("Orders").orderBy("TimeOrder", Query.Direction.ASCENDING);
                     orders.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot snapshot) {
@@ -172,8 +177,11 @@ public class Administrator extends AppCompatActivity {
                                     userModel.setEmail(userEmail);
                                     productModel.setUserModel(userModel);
 
+                                    if(orderID != null || orderID != ""){
+                                        productModels.add(productModel);
+                                    }
 
-                                    productModels.add(productModel);
+
 
 
 
@@ -181,17 +189,19 @@ public class Administrator extends AppCompatActivity {
 
                             }
 
+
+
                             //This will instantiate the recycler view and adapter to be later append on our display
                             RecyclerView productRecyclerView = (RecyclerView)findViewById(R.id.adminPageRecyclerView);
                             AdminOrderRecyclerView adapter = new AdminOrderRecyclerView(getApplicationContext(),productModels,AdminOrderRecyclerView.Page.main);
                             productRecyclerView.setHasFixedSize(true);
                             productRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             productRecyclerView.setAdapter(adapter);
-
+                            onDataChanged = true;
 
                         }
                     });
-                    //Toast.makeText(getApplicationContext(), userEmail, Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

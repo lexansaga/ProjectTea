@@ -151,19 +151,19 @@ public class AdminHistory extends AppCompatActivity {
                           @Override
                           public void onEvent(@Nullable QuerySnapshot orderSnapshots, @Nullable FirebaseFirestoreException e) {
 
-                              if(orderSnapshots.isEmpty()){
+                              if(orderSnapshots.isEmpty() || orderSnapshots.size() <= 0){
                                   //Toast.makeText(getApplicationContext(), "No Value", Toast.LENGTH_SHORT).show();
                                   return;
                               }
                               for(QueryDocumentSnapshot orderSnapshot : orderSnapshots){
                                   // Then we loop on the snapshots to get the data individually and add it to the container
-                                  String orderID = orderSnapshot.get("ID").toString();
-                                  String orderUserID = orderSnapshot.get("UserID").toString();
-                                  String orderNo = orderSnapshot.get("OrderNo").toString();
-                                  String timeOrder = orderSnapshot.get("TimeOrder").toString();
-                                  String status = orderSnapshot.get("Status").toString();
-                                  String total = orderSnapshot.get("Total").toString();
-                                  if(!status.contains("InProgress")){
+                                  String orderID = Utils.CheckTextIfNull(orderSnapshot.get("ID"),"No Order ID");
+                                  String orderUserID = Utils.CheckTextIfNull(orderSnapshot.get("UserID"),"No User ID");
+                                  String orderNo = Utils.CheckTextIfNull(orderSnapshot.get("OrderNo"), "No Order Number");
+                                  String timeOrder = Utils.CheckTextIfNull(orderSnapshot.get("TimeOrder"), "No Time Order");
+                                  String status =Utils.CheckTextIfNull( orderSnapshot.get("Status"),"No Status");
+                                  String total = Utils.CheckTextIfNull(orderSnapshot.get("Total"),"No Total");
+                                  if(!status.contains("InProgress") && orderSnapshot.get("ID") != null){
                                       Log.e("AdminHistoryOrderID",orderID);
                                       //Let's add the data if the status of the data not InProgress
                                       productModels.add(new ProductModel(orderID,new OrderModel(orderID,orderNo,"0","0",total,status),new UserModel(userName,userContact,userAddress,userEmail)));

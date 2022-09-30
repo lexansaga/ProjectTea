@@ -183,7 +183,7 @@ public class ManageItem extends Fragment {
                         if (task.isSuccessful()) {
                             DocumentSnapshot documentSnapshot = task.getResult();
                             if (documentSnapshot.exists()) {
-                                Toast.makeText(context, firebaseHandler.GetItemPosition(firestore.collection("Series"), documentSnapshot.get("Series").toString()) + "", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(context, firebaseHandler.GetItemPosition(firestore.collection("Series"), documentSnapshot.get("Series").toString()) + "", Toast.LENGTH_SHORT).show();
                                 itemName.setText(documentSnapshot.get("Name").toString());
                                 itemPrice.setText(documentSnapshot.get("Price").toString());
                                 itemDescription.setText(documentSnapshot.get("Description").toString());
@@ -214,7 +214,7 @@ public class ManageItem extends Fragment {
             @Override
             public void onClick(View view) {
 
-                String id = itemName.getText().toString().trim() + "|" + itemVariations.getText().toString().trim();
+                String id = spinItem.getSelectedItem().toString();
                 if (selectedFunction.equals("Delete")) {
                     // If the selected function was delete , The function of this block will be delete
                     if (spinItem.getSelectedItem().toString().contains("Choose")) {
@@ -275,7 +275,7 @@ public class ManageItem extends Fragment {
                 data.put("Description", itemDescription.getText().toString().trim());
                 data.put("Variation", itemVariations.getText().toString().trim());
                 data.put("Price", itemPrice.getText().toString().trim());
-               data.put("ImageLink", "https://firebasestorage.googleapis.com/v0/b/projecttea-5d955.appspot.com/o/Items%2Fitem_placeholder.png?alt=media&token=cd69d117-5198-4fe1-9ba0-e8c2b0b0ce98");
+                data.put("ImageLink", "https://firebasestorage.googleapis.com/v0/b/projecttea-5d955.appspot.com/o/Items%2Fitem_placeholder.png?alt=media&token=cd69d117-5198-4fe1-9ba0-e8c2b0b0ce98");
 
 
                //Then get the image path before saviing it to the database

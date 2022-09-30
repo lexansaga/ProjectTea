@@ -4,20 +4,33 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.cardview.widget.CardView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,15 +51,16 @@ public class FragmentAddons extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Button btnAdd,btnUpdate,btnDelete,btnSave;
+    Button btnAdd, btnUpdate, btnDelete, btnSave;
     CardView cardSelectAddOns;
-    EditText edtAddOnsName,edtAddOnsPrice;
+    EditText edtAddOnsName, edtAddOnsPrice;
     Spinner spinAddOns;
 
     String selectedFunction;
     FirebaseFirestore firestore;
     Context context;
     FirebaseHandler firebaseHandler;
+
     public FragmentAddons() {
         // Required empty public constructor
     }
@@ -98,10 +112,37 @@ public class FragmentAddons extends Fragment {
 
         spinAddOns = view.findViewById(R.id.spinnerAddOnsSelect);
 
-        setSelected(btnAdd,new Button[]{btnUpdate,btnDelete},"Add");
-        setSelected(btnUpdate,new Button[]{btnAdd,btnDelete},"Update");
-        setSelected(btnDelete,new Button[]{btnAdd,btnUpdate},"Delete");
+        setSelected(btnAdd, new Button[]{btnUpdate, btnDelete}, "Add");
+        setSelected(btnUpdate, new Button[]{btnAdd, btnDelete}, "Update");
+        setSelected(btnDelete, new Button[]{btnAdd, btnUpdate}, "Delete");
         firebaseHandler.FillSpinner(spinAddOns, firestore.collection("Add_Ons"));
+        firestore = FirebaseFirestore.getInstance();
+        spinAddOns.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                firestore.collection("Add_Ons").document(spinAddOns.getSelectedItem().toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isComplete()) {
+                            DocumentSnapshot snapshot = task.getResult();
+                            if (snapshot.exists()) {
+                                String name = snapshot.get("Name").toString();
+                                String price = snapshot.get("Price").toString();
+                                edtAddOnsName.setText(name);
+                                edtAddOnsPrice.setText(price);
+                            }
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,10 +161,11 @@ public class FragmentAddons extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             // Do nothing but close the dialog
 
-                            firestore.collection("Add_Ons").document(edtAddOnsName.getText().toString().trim()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            firestore.collection("Add_Ons").document(spinAddOns.getSelectedItem().toString()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(context, "Add Ons deleted Sucessfully", Toast.LENGTH_SHORT).show();
+                                    ResetDefault();
                                 }
                             });
                             dialog.dismiss();
@@ -146,7 +188,7 @@ public class FragmentAddons extends Fragment {
                     alert.getButton(alert.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.font_color));
                     return;
                 }
-                if(edtAddOnsName.getText().toString().isEmpty() || edtAddOnsPrice.getText().toString().isEmpty()){
+                if (edtAddOnsName.getText().toString().isEmpty() || edtAddOnsPrice.getText().toString().isEmpty()) {
 
                     Toast.makeText(getContext(), "Please fill up AddOns Name and Price", Toast.LENGTH_SHORT).show();
 
@@ -176,31 +218,30 @@ public class FragmentAddons extends Fragment {
         return view;
     }
 
-    void ResetDefault(){
+    void ResetDefault() {
         spinAddOns.setSelection(0);
         edtAddOnsName.setText("");
         edtAddOnsPrice.setText("");
     }
 
-    void setSelected(Button button,Button[] arr,String selected){
+    void setSelected(Button button, Button[] arr, String selected) {
 
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 selectedFunction = selected;
-                button.setBackground(getResources().getDrawable(R.drawable.btn_radioselected,null));
-                button.setTextColor(getResources().getColor(R.color.white,null));
-                for (Button btn: arr
+                button.setBackground(getResources().getDrawable(R.drawable.btn_radioselected, null));
+                button.setTextColor(getResources().getColor(R.color.white, null));
+                for (Button btn : arr
                 ) {
-                    btn.setBackground(getResources().getDrawable(R.drawable.btn_radiodefault,null));
-                    btn.setTextColor(getResources().getColor(R.color.primary,null));
+                    btn.setBackground(getResources().getDrawable(R.drawable.btn_radiodefault, null));
+                    btn.setTextColor(getResources().getColor(R.color.primary, null));
                 }
                 btnSave.setText(selectedFunction + " Add Ons");
-                if(selectedFunction.equals("Add")){
+                if (selectedFunction.equals("Add")) {
                     cardSelectAddOns.setVisibility(View.GONE);
-                }
-                else{
+                } else {
                     cardSelectAddOns.setVisibility(View.VISIBLE);
                 }
             }
