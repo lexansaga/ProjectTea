@@ -128,6 +128,10 @@ public class ProductDescription extends AppCompatActivity implements View.OnClic
             btnBuyNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(productVariations.getSelectedItem().toString().contains("Choose")){
+                        Toast.makeText(getApplicationContext(), "Please Choose a Variation", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     //This code will handle item formatting , ID , Name , Price , Variation
                     ArrayList<ProductModel> models = new ArrayList<>();
                     String id = productName.getText().toString()+"|"+productPrice.getText().toString().replace(currency,"");
@@ -189,6 +193,11 @@ public class ProductDescription extends AppCompatActivity implements View.OnClic
             btnAddToCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(productVariations.getSelectedItem().toString().contains("Choose")){
+                        Toast.makeText(getApplicationContext(), "Please Choose a Variation", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     SharedPreferences preferences = getSharedPreferences("User",MODE_PRIVATE);
                     String user =  preferences.getString("User","").toString();
                     if(user.equals("")){
@@ -260,14 +269,14 @@ public class ProductDescription extends AppCompatActivity implements View.OnClic
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     if(productVariations.getSelectedItem().toString().contains("Choose")){
-                        
+
                         return;
                     }
                     firestore.collection("Items").document(productName.getText().toString()+"|"+productVariations.getSelectedItem().toString()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             String price = Utils.CheckTextIfNull(documentSnapshot.get("Price"),"No Price");
-                            Toast.makeText(getApplicationContext(), price, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(), price, Toast.LENGTH_SHORT).show();
 
                             productPrice.setText("₱"+price);
                         }
